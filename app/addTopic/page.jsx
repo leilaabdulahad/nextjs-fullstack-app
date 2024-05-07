@@ -1,11 +1,13 @@
 "use client";
-import { useState } from "react";
-import { useRouter } from "next/router";
 
-export default function AddTopic({ onAddTopic }) {
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+export default function AddTopic() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,8 +27,7 @@ export default function AddTopic({ onAddTopic }) {
       });
 
       if (res.ok) {
-        const newTopic = await res.json();
-        onAddTopic(newTopic);
+        router.push("/upload");
       } else {
         throw new Error("Failed to create a topic");
       }
@@ -35,7 +36,6 @@ export default function AddTopic({ onAddTopic }) {
     }
   };
 
-
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3">
       <input
@@ -43,7 +43,7 @@ export default function AddTopic({ onAddTopic }) {
         value={title}
         className="border border-slate-500 px-8 py-2"
         type="text"
-        placeholder="Post title"
+        placeholder="Topic Title"
       />
 
       <input
@@ -51,14 +51,14 @@ export default function AddTopic({ onAddTopic }) {
         value={description}
         className="border border-slate-500 px-8 py-2"
         type="text"
-        placeholder="Post description"
+        placeholder="Topic Description"
       />
 
       <button
         type="submit"
         className="bg-green-600 font-bold text-white py-3 px-6 w-fit"
       >
-        Add post
+        Add Topic
       </button>
     </form>
   );
