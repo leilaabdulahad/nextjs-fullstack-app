@@ -4,6 +4,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "@/components/Navbar";
 
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {

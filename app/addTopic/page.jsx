@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import TopicsList from "@/components/TopicsList";
 
 export default function AddTopic() {
   const [title, setTitle] = useState("");
@@ -27,7 +28,7 @@ export default function AddTopic() {
       });
 
       if (res.ok) {
-        router.push("/upload");
+        router.push("/");
       } else {
         throw new Error("Failed to create a topic");
       }
@@ -37,6 +38,8 @@ export default function AddTopic() {
   };
 
   return (
+    <>
+  
     <form onSubmit={handleSubmit} className="flex flex-col gap-3">
       <input
         onChange={(e) => setTitle(e.target.value)}
@@ -61,5 +64,6 @@ export default function AddTopic() {
         Add Topic
       </button>
     </form>
+    </>
   );
 }
