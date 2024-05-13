@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import TopicsList from "@/components/TopicsList";
 
 export default function AddTopic() {
   const [title, setTitle] = useState("");
