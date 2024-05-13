@@ -1,5 +1,3 @@
-'use client'
-import { useState, useEffect } from 'react';
 import Link from "next/link";
 import RemoveBtn from "./RemoveBtn";
 import { HiPencilAlt } from "react-icons/hi";
@@ -17,21 +15,11 @@ const getTopics = async () => {
     return res.json();
   } catch (error) {
     console.log("Error loading topics: ", error);
-    return { topics: [] }; 
   }
 };
 
-export default function TopicsList() {
-  const [topics, setTopics] = useState([]);
-
-  useEffect(() => {
-    const fetchTopics = async () => {
-      const data = await getTopics();
-      setTopics(data.topics);
-    };
-
-    fetchTopics();
-  }, []);
+export default async function TopicsList() {
+  const { topics } = await getTopics();
 
   return (
     <>

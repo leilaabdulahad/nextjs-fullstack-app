@@ -28,7 +28,8 @@ export default function AddTopic() {
       });
 
       if (res.ok) {
-        router.push("/");
+        await router.push("/")
+        router.reload()
       } else {
         throw new Error("Failed to create a topic");
       }
